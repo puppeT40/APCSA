@@ -60,8 +60,54 @@ public class fractions {
         int[] frac = new int[2];
 
         frac[0] = rand.nextInt(10); // Obtain a number between [0 - 10].
-        frac[1] = rand.nextInt(10); // Obtain a number between [0 - 10].
+        frac[1] = rand.nextInt(9) + 1; // Obtain a number between [1 - 10].
         print_fraction(frac);  // optional
         return frac;
+    }
+
+    public static int[] operations(int[] frac1, int[] frac2, String operation) {
+        int[] final_frac = new int[2];
+        int frac1_num = frac1[0];
+        int frac1_denom = frac1[1];
+        int frac2_num = frac2[0];
+        int frac2_denom = frac2[1];
+
+        int cd, frac1_newnum, frac2_newnum, final_num, final_denom;
+        switch(operation) {
+            case "+":
+                /*
+                1. Common denom
+                2. Add numerators
+                3. Simplify(?)
+                4. Assign to final_frac
+                 */
+                cd = frac1_denom * frac2_denom;
+                frac1_newnum = frac1_num * frac2_denom;
+                frac2_newnum = frac2_num * frac1_denom;
+
+                final_num = frac1_newnum + frac2_newnum;
+                final_denom = cd;  // TODO Simplify
+
+                final_frac[0] = final_num;
+                final_frac[1] = final_denom;
+                break;
+            case "-":
+                cd = frac1_denom * frac2_denom;
+                frac1_newnum = frac1_num * frac2_denom;
+                frac2_newnum = frac2_num * frac1_denom;
+
+                final_num = frac1_newnum - frac2_newnum;
+                final_denom = cd;  // TODO Simplify
+
+                final_frac[0] = final_num;
+                final_frac[1] = final_denom;
+                break;
+            case "*":
+                break;
+            case "/":
+                break;
+        }
+    print_fraction(final_frac);  // optional
+    return final_frac;
     }
 }
