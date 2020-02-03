@@ -1,0 +1,8 @@
+<component name="CopyrightManager">
+  <settings default="CSA">
+    <module2copyright>
+      <element module="All" copyright="CSA" />
+    </module2copyright>
+    <LanguageOptions name="JAVA" />
+  </settings>
+</component>
