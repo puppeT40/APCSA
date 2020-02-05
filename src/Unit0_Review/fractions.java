@@ -12,16 +12,26 @@ import java.util.Random;
 
 public class fractions {
     public static void main(String[] args){
+        /*
         int[] frac1 = {1,2};
         int[] frac2 = new int[2];
         frac2[0] = 3;
         frac2[1] = 4;
-        /*
         print_fraction(frac1);
         print_fraction(frac2);
         user_frac();
          */
-        random_frac();
+        int[] f1 = user_frac();
+        int[] f2 = user_frac();
+
+        print_fraction(operations(f1, f2, "+"));
+        print_fraction(operations(f1, f2, "-"));
+        print_fraction(operations(f1, f2, "*"));
+        print_fraction(operations(f1, f2, "/"));
+    }
+
+    public static long gcm(long a, long b) {
+        return b == 0 ? a : gcm(b, a % b);
     }
 
     public static void print_fraction(int[] frac) {
@@ -35,10 +45,11 @@ public class fractions {
         } else if(numerator == 0) {
             System.out.println(0);
         } else {
-            System.out.println(numerator + "/" + denominator);
+            long gcm = gcm(numerator, denominator);
+            System.out.println((numerator / gcm) + "/" + (denominator / gcm));
         }
     }
-    public static int get_int(){
+    public static int get_int() {
         Scanner reader = new Scanner(System.in);
         return reader.nextInt();
     }
@@ -52,16 +63,15 @@ public class fractions {
             System.out.println("What denominator would you like? (Any number except 0)");
             frac[1] = get_int();
         }
-        print_fraction(frac);  // optional
         return frac;
     }
+
     public static int[] random_frac() {
         Random rand = new Random();
         int[] frac = new int[2];
 
         frac[0] = rand.nextInt(10); // Obtain a number between [0 - 10].
         frac[1] = rand.nextInt(9) + 1; // Obtain a number between [1 - 10].
-        print_fraction(frac);  // optional
         return frac;
     }
 
@@ -86,7 +96,7 @@ public class fractions {
                 frac2_newnum = frac2_num * frac1_denom;
 
                 final_num = frac1_newnum + frac2_newnum;
-                final_denom = cd;  // TODO Simplify
+                final_denom = cd;
 
                 final_frac[0] = final_num;
                 final_frac[1] = final_denom;
@@ -97,17 +107,21 @@ public class fractions {
                 frac2_newnum = frac2_num * frac1_denom;
 
                 final_num = frac1_newnum - frac2_newnum;
-                final_denom = cd;  // TODO Simplify
+                final_denom = cd;
 
                 final_frac[0] = final_num;
                 final_frac[1] = final_denom;
                 break;
             case "*":
+                final_frac[0] = frac1_num * frac2_num;
+                final_frac[1] = frac1_denom * frac2_denom;
                 break;
             case "/":
+                final_frac[0] = frac1_num * frac2_denom;
+                final_frac[1] = frac1_denom * frac2_num;
                 break;
         }
-    print_fraction(final_frac);  // optional
-    return final_frac;
+
+        return final_frac;
     }
 }
