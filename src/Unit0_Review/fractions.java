@@ -29,11 +29,9 @@ public class fractions {
         print_fraction(operations(f1, f2, "*"));
         print_fraction(operations(f1, f2, "/"));
     }
-
-    public static long gcm(long a, long b) {
+    public static int gcm(int a, int b) {
         return b == 0 ? a : gcm(b, a % b);
     }
-
     public static void print_fraction(int[] frac) {
         int numerator = frac[0];
         int denominator = frac[1];
@@ -45,8 +43,10 @@ public class fractions {
         } else if(numerator == 0) {
             System.out.println(0);
         } else {
-            long gcm = gcm(numerator, denominator);
-            System.out.println((numerator / gcm) + "/" + (denominator / gcm));
+            int gcm = gcm(numerator, denominator);
+            int newnum = (numerator / gcm);
+            int newdenom = (denominator / gcm);
+            System.out.println(newnum + "/" + newdenom);
         }
     }
     public static int get_int() {
