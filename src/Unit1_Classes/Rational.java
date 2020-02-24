@@ -75,6 +75,6 @@ public class Rational {
     }
 
     public int getDen() {
-        return num;
+        return den;
     }
 }
